@@ -1,4 +1,6 @@
 from kaggle_environments import evaluate, make
+import numpy as np
+from random import choice
 
 env = make("connectx", debug=True)
 env.render()
@@ -35,6 +37,13 @@ def mean_reward(rewards):
 # Run multiple episodes to estimate it's performance.
 print("My Agent vs Random Agent:", mean_reward(evaluate("connectx", [my_agent, "random"], num_episodes=100)))
 print("My Agent vs Negamax Agent:", mean_reward(evaluate("connectx", [my_agent, "negamax"], num_episodes=10)))
+
+
+class Qlearn:
+    def __init__(self, alpha, gamma, epsilon):
+        self.alpha = alpha
+        self.gamma = gamma
+        self.epsilon = epsilon
 
 
 if __name__ == '__main__':
